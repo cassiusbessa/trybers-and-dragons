@@ -9,7 +9,7 @@ abstract class Races {
 	get name(): string {return this._name;}
 	get dexterity(): number {return this._dexterity;}
 
-	static get createdRacesInstances(): number {
+	static createdRacesInstances(): number {
 		throw new Error('Not implemented');
 	} 
 

@@ -1,4 +1,4 @@
 export interface Irace {
-	name: string;
-	dexterity: number
+  name: string;
+  dexterity: number
 }
