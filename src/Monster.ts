@@ -1,18 +1,27 @@
-import { SimpleFighter } from './Fighter';
-import getRandomInt from './utils';
+import Fighter, { SimpleFighter } from './Fighter';
 
 export default class Monster implements SimpleFighter {
   private _lifePoints = 85;
   private _strength = 63;
 
   receiveDamage(attackPoints: number): number {
-    const damage = attackPoints - this.defense;
-    if (damage > 0) {
-      this._lifePoints -= damage;
-      console.log(`${this.name} has received ${damage} damage.`);
-    }
-    if (this._lifePoints <= 0) return -1;
-    
+    const damage = attackPoints;
+    this._lifePoints -= damage;
+    console.log(`$The monster has received ${damage} damage.`);
+    if (this._lifePoints <= 0) return -1;    
     return this._lifePoints;
+  }
+
+  attack(enemy: SimpleFighter | Fighter): void {
+    const damage = this._strength;
+    enemy.receiveDamage(damage);
+  }
+
+  get lifePoints(): number {
+    return this._lifePoints;
+  }
+
+  get strength(): number {
+    return this._strength;
   }
 }
