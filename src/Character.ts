@@ -104,7 +104,7 @@ export default class Character implements Fighter {
     this.healthAtributtesSet();
   }
 
-  special(enemy: Fighter): void {
+  special(enemy: Fighter | SimpleFighter): void {
     console.log(`${this.name} 
     it takes out its fangs, bites the enemy's neck and sucks its soul!`);
     const soulVamp = this._strength * ((100 + getRandomInt(1, 10)) / 100);
