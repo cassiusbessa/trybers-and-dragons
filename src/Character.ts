@@ -68,7 +68,7 @@ export default class Character implements Fighter {
       this._lifePoints -= damage;
       console.log(`${this.name} has received ${damage} damage.`);
     }
-    if (this._lifePoints <= 0) return -1;
+    if (this._lifePoints <= 0) this._lifePoints = -1;
     
     return this._lifePoints;
   }
@@ -83,7 +83,6 @@ export default class Character implements Fighter {
       console.log(`${this.name} reached maximum health potential`);
     }
     this._lifePoints = this._maxLifePoints;
-    console.log(`${this.name} has leveled up!`, this);
   }
 
   private primaryAtributtesIncrement():void {
@@ -102,6 +101,7 @@ export default class Character implements Fighter {
   levelUp(): void {
     this.primaryAtributtesIncrement();
     this.healthAtributtesSet();
+    // console.log(`${this.name} has leveled up!`, this);
   }
 
   special(enemy: Fighter | SimpleFighter): void {
