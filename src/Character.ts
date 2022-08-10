@@ -76,32 +76,41 @@ export default class Character implements Fighter {
     enemy.receiveDamage(this.strength);
   }
 
-  levelUp(): void {
-    this._strength += getRandomInt(1, 10);
-    this._defense += getRandomInt(1, 10);
-    this._maxLifePoints += getRandomInt(1, 10);
-    this._race.dexterity += getRandomInt(1, 10);
-    this._energy.amount = 10;
-    const vidaRaca = this.race.maxLifePoints;
-    console.log(vidaRaca);
+  private maxHealthValidation():void {
     if (this.maxLifePoints > this.race.maxLifePoints) {
       this._maxLifePoints = this.race.maxLifePoints;
       console.log(`${this.name} reached maximum health potential`);
     }
     this._lifePoints = this._maxLifePoints;
-    console.log(`${this.name} has leveled up!`);
-    console.log(this);
+    console.log(`${this.name} has leveled up!`, this);
+  }
+
+  private primaryAtributtesIncrement():void {
+    this._strength += getRandomInt(1, 10);
+    this._defense += getRandomInt(1, 10);
+    this._maxLifePoints += getRandomInt(1, 10);
+    this.maxHealthValidation();
+    this._race.dexterity += getRandomInt(1, 10);
+  }
+
+  private healthAtributtesSet():void {
+    this._energy.amount = 10;
+    this._lifePoints = this._maxLifePoints;
+  } 
+
+  levelUp(): void {
+    this.primaryAtributtesIncrement();
+    this.healthAtributtesSet();
   }
 
   special(enemy: Fighter): void {
     console.log(`${this.name} 
     it takes out its fangs, bites the enemy's neck and sucks its soul!`);
-    const soulVamp = getRandomInt(1, 10);
-    this._strength += soulVamp;
-    const enemyLife = enemy.lifePoints;
-    this.attack(enemy);
-    const damage = enemyLife - enemy.lifePoints;
+    const soulVamp = this._strength * ((100 + getRandomInt(1, 10)) / 100);
+    const currentEnemyLife = enemy.lifePoints;
+    const hurtEnemyLife = enemy.receiveDamage(soulVamp);
+    const damage = currentEnemyLife - hurtEnemyLife;
     this._lifePoints += damage;
-    this._strength -= soulVamp;
+    this._energy.amount -= 4;
   }
 }
