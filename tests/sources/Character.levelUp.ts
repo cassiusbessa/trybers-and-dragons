@@ -11,6 +11,7 @@ type properties = {
 };
 
 const checkCharacterProperties = (prev: properties, curr: Character): boolean => {
+  console.log(curr);
   if (curr.energy.amount !== 10) return false;
   if (prev.strength >= curr.strength || prev.strength + 10 < curr.strength) return false;
   if (prev.dexterity >= curr.dexterity || prev.dexterity + 10 < curr.dexterity) return false;
@@ -39,5 +40,6 @@ const result = () => {
       break;
     }
   }
+  console.log(Character);
   return res;
 };
