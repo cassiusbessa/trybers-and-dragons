@@ -74,6 +74,7 @@ export default class Character implements Fighter {
   }
 
   attack(enemy: Fighter | SimpleFighter): void {
+    console.log(enemy);
     enemy.receiveDamage(this.strength);
   }
 

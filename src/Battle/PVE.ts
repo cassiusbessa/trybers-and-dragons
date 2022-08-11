@@ -1,6 +1,6 @@
 import Battle from './Battle';
 import Fighter, { SimpleFighter } from '../Fighter';
-// import Monster from '../Monster';
+import getRandomInt from '../utils';
 
 export default class PVE extends Battle {
   private _player1: Fighter;
@@ -29,13 +29,14 @@ export default class PVE extends Battle {
   hordeAttack(): void {
     const aliveMonsters = this.filterDeadMonsters();
     for (let i = 0; i < aliveMonsters.length; i += 1) {
+      console.log('monstros atacando');
       aliveMonsters[i].attack(this.player1);
     }
   }
 
   playerAttack(): void {
     const aliveMonsters = this.filterDeadMonsters();
-    const random = Math.floor(Math.random() * this._horde.length);
+    const random = getRandomInt(0, aliveMonsters.length - 1);
     this.player1.attack(aliveMonsters[random]);
   }
 
