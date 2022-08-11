@@ -16,6 +16,11 @@ export default class PVP extends Battle {
     return this._player2;
   }
 
+  // private specialAttack(player: Fighter, player2: Fighter): void {
+  //   player.attack(player2);
+  //   player2.attack(player);
+  // }
+
   fight(): number {
     while (this.player.lifePoints !== -1 && this.player2.lifePoints !== -1) {
       console.log(this.player2.lifePoints);
