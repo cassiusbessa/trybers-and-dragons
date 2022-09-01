@@ -18,13 +18,13 @@ const levelUp = (character: Character, index: number): void => {
   }
 };
 
-levelUp(player1, 50);
+levelUp(player1, 100);
 
 const runBattles = (battle: Battle[]): void => {
   battle.forEach((b) => { b.fight(); console.log('fim da luta'); });
 };
 
-// console.log(runBattles([pvp, pve]));
+console.log(runBattles([pvp, pve]));
 
 export {
   player1,

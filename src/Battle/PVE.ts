@@ -40,12 +40,14 @@ export default class PVE extends Battle {
     this.player1.attack(aliveMonsters[random]);
   }
 
-  fight(): number {
+  fight(): void {
     while (this.player1.lifePoints !== -1 
       && this.filterDeadMonsters().length > 0) {
       this.hordeAttack();
       this.playerAttack();
     }
-    return this.player.lifePoints === -1 ? -1 : 1;
+    return this.player.lifePoints === -1 
+      ? console.log('a horda venceu') 
+      : console.log('player1 venceu');
   }
 }
